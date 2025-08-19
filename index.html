@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav & Anju - Wedding</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fd79a8);
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ff6b6b, transparent);
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(253, 121, 168, 0.8)), 
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2340&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M12.5 8C11 4.5 7.5 4.5 7.5 7s2.5 5 5 7 5-2 5-5-1.5-4-5-4z" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+            animation: heartFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            33% { transform: translateX(-10px) translateY(-15px); }
+            66% { transform: translateX(10px) translateY(-10px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: heroZoom 2s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes heroZoom {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.5) rotateY(180deg); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) rotateY(0deg); 
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 6rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 107, 107, 0.5)); }
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: white;
+            font-style: italic;
+            font-weight: 400;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: subtitleSlide 2s ease-out 0.5s both;
+        }
+
+        @keyframes subtitleSlide {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .countdown-hero {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-hero-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 20px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: countdownPop 2s ease-out var(--delay) both;
+        }
+
+        .countdown-hero-item:nth-child(1) { --delay: 1s; }
+        .countdown-hero-item:nth-child(2) { --delay: 1.2s; }
+        .countdown-hero-item:nth-child(3) { --delay: 1.4s; }
+        .countdown-hero-item:nth-child(4) { --delay: 1.6s; }
+
+        @keyframes countdownPop {
+            0% { opacity: 0; transform: scale(0) rotate(180deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .countdown-hero-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .countdown-hero-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: numberPulse 2s infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .countdown-hero-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .logo {
+            color: #ff6b6b;
+            background: none;
+            -webkit-text-fill-color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #333;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-toggle {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .mobile-toggle {
+            color: #333;
+        }
+
+        /* Mobile menu styling */
+        .nav-links.mobile-active {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98) !important;
+            flex-direction: column;
+            padding: 1rem 0;
+            border-radius: 0 0 15px 15px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .nav-links.mobile-active a {
+            color: #333 !important;
+            padding: 1rem 2rem;
+            margin: 0;
+            border-radius: 0;
+            font-weight: 600;
+        }
+
+        .nav-links.mobile-active a:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b !important;
+        }
+
+        /* Section styling */
+        .section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: titleSlide 1s ease-out;
+        }
+
+        @keyframes titleSlide {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Photo Gallery Section */
+        .gallery {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .gallery-item {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            transition: all 0.6s ease;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(253, 121, 168, 0.8));
+            animation: galleryFadeIn 1s ease-out var(--delay) both;
+        }
+
+        .gallery-item:nth-child(1) { --delay: 0.2s; }
+        .gallery-item:nth-child(2) { --delay: 0.4s; }
+        .gallery-item:nth-child(3) { --delay: 0.6s; }
+        .gallery-item:nth-child(4) { --delay: 0.8s; }
+
+        @keyframes galleryFadeIn {
+            0% { opacity: 0; transform: translateY(50px) rotateX(-20deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02) rotateZ(2deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1) saturate(1.2);
+        }
+
+        .gallery-item::after {
+            content: '💕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 3rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .gallery-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* About Us Section */
+        .about-us {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 0 auto;
+            max-width: 1200px;
+            animation: aboutSlideUp 1s ease-out;
+        }
+
+        @keyframes aboutSlideUp {
+            0% { opacity: 0; transform: translateY(100px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(-45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .about-card:hover::before {
+            animation: shimmer 0.8s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(-45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(-45deg); opacity: 0; }
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .about-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .about-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Event Details Section */
+        .event-details {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            margin: 0 auto;
+            max-width: 1000px;
+            animation: detailsZoomIn 1s ease-out;
+        }
+
+        @keyframes detailsZoomIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .event-details h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .event-details p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .event-details strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-love {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0077b5;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .linkedin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);
+            background: white;
+        }
+
+        .instagram {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #e03620;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 1, 1, 0.3);
+            background: white;
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero-content {
+                padding: 2rem;
+            }
+
+            .loading-content {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .about-us {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .countdown-hero-item {
+                min-width: 80px;
+            }
+
+            .countdown-hero-number {
+                font-size: 2rem;
+            }
+
+            .gallery-item img {
+                height: 250px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff6b6b, #fd79a8);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            transform: translate(-50%, -60%) scale(0.8);
+        }
+
+        .loading-heart {
+            font-size: 2.5rem;
+            animation: heartBeat 0.8s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .loading-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-content img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #fd79a8, #ff6b6b);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-heart">
+            <div class="loading-content"> 
+                <img src="/assets/loading.gif" alt="Couple loading animation">
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">P & A</div>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#details">Details</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pranav & Anju</h1>
+            <p class="subtitle">Our Love Story Begins 💕</p>
+            <div class="countdown-hero" id="countdown">
+                <div class="countdown-hero-item">
+                    <div class="countdown-hero-number" id="days">--</div>
+                    <div class="countdown-hero-label">Days</div>
+                </div>
+                <div class="countdown-hero-item">
+                    <div class="countdown-hero-number" id="hours">--</div>
+                    <div class="countdown-hero-label">Hours</div>
+                </div>
+                <div class="countdown-hero-item">
+                    <div class="countdown-hero-number" id="minutes">--</div>
+                    <div class="countdown-hero-label">Minutes</div>
+                </div>
+                <div class="countdown-hero-item">
+                    <div class="countdown-hero-number" id="seconds">--</div>
+                    <div class="countdown-hero-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="gallery">
+            <h2 class="section-title">Our Beautiful Moments</h2>
+            <div class="photo-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1621801306185-8c0ccf9c8eb8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Couple moment">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" alt="Love story">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="Joyful moment">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80" alt="Celebration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-us">
+            <div class="about-card">
+                <h3>Pranav Chandran</h3>
+                <p><strong>Son of</strong></p>
+                <p>Chandran P.K. & Sheeba V.V.</p>
+                <p>Hindolam Vazhakalil House</p>
+                <p>Baode, P.O. Baode</p>
+            </div>
+            <div class="about-card">
+                <h3>Anju VV</h3>
+                <p><strong>Daughter of</strong></p>
+                <p>Mr. T. Sajeevan & Mrs. Priya V.V.</p>
+                <p>Kattileparambath</p>
+                <p>Kilalur P.O., Bavod</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="section">
+        <h2 class="section-title">Wedding Details</h2>
+        <div class="event-details">
+            <h3>Join Our Celebration</h3>
+            <p><strong>Date:</strong> Monday, September 8, 2025 (1201 Chingam 23)</p>
+            <p><strong>Muhurtam:</strong> 11:30 AM to 12:30 PM</p>
+            <p><strong>Venue:</strong> Bridal house</p>
+            <p><strong>Reception:</strong> Evening of September 8, 2025</p>
+            <p><strong>Contact:</strong> 9656725775</p>
+            
+            <div class="button-group">
+                <button class="btn" onclick="openGoogleMaps('Wedding hall, Baode')">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Get Directions
+                </button>
+                <a href="assets/Invitation-Letter.jpg" download class="btn">
+                    <i class="fas fa-download"></i>
+                    Download Invitation
+                </a>
+                <button class="btn" onclick="addToCalendar()">
+                    <i class="fas fa-calendar-plus"></i>
+                    Add to Calendar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+         <p class="footer-copy">&copy; 2025 Pranav & Anju Wedding. Made with love.</p> <br>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/aswanth-kt/" target="_blank" rel="noopener" class="social-link linkedin">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/aswanth.k.t/" target="_blank" rel="noopener" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+    </footer>
+
+    <script>
+        // Loading overlay
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                loadingOverlay.classList.add('fade-out');
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 700);
+            }, 2000);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particle.style.opacity = Math.random();
+                particlesContainer.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+
+            setInterval(createParticle, 300);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('September 8, 2025 11:30:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<h3 style="color: white; font-family: \'Dancing Script\', cursive; font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">The big day is here! 🎉✨</h3>';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Google Maps Integration
+        function openGoogleMaps(location) {
+            const address = encodeURIComponent(location);
+            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+        }
+
+        // Add to Calendar
+        function addToCalendar() {
+            const title = 'Pranav & Anju Wedding';
+            const details = 'Wedding ceremony of Pranav Chandran and Anju VV';
+            const location = 'Wedding hall, Baode';
+            const startDate = '20250908T113000Z';
+            const endDate = '20250908T123000Z';
+            
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+            window.open(url, '_blank');
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            const navLinks = document.getElementById('navLinks');
+            
+            if (navLinks.style.display === 'flex' || navLinks.classList.contains('mobile-active')) {
+                navLinks.style.display = 'none';
+                navLinks.classList.remove('mobile-active');
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.classList.add('mobile-active');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    const navLinks = document.getElementById('navLinks');
+                    navLinks.style.display = 'none';
+                    navLinks.classList.remove('mobile-active');
+                }
+            });
+        });
+
+        // Initialize particles and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const animateElements = document.querySelectorAll('.gallery-item, .about-card, .event-details');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Easter egg - click on logo
+        document.querySelector('.logo').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'textGlow 1s ease-in-out';
+            }, 10);
+        });
+    </script>
+</body>
+</html>
